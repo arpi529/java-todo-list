@@ -1,0 +1,198 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: url(https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=background-blur-clean-531880.jpg&fm=jpg);
+            background-repeat: no-repeat;
+        }
+
+        h1{
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        h2{
+            font-size: 25px;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        #left{
+            margin-left: 160px;
+        }
+
+        section{
+            border: 2px rgb(165, 103, 198) solid ;
+            background-color: rgb(70, 166, 157) ;
+            width: 350px;
+            padding: 20px;
+            border-radius: 30px;
+            margin: 20px;
+        }
+
+        li{
+            font-size: 18px;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background-color: crimson;
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .input-group button {
+            padding: 8px 15px;
+            background-color: rgb(165, 103, 198);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-group button:hover {
+            background-color: rgb(140, 80, 170);
+        }
+    </style>
+</head>
+<body>
+    <h1> My To Do List </h1>
+
+    <div class="grid">
+
+<div id="left">
+
+    <section>
+    <h2>Hobbies</h2>
+    <div class="input-group">
+        <input type="text" id="hobbyInput" placeholder="Add a hobby">
+        <button onclick="addHobby()">Add</button>
+    </div>
+    <ul id="hobbyList">
+         <li>Designing beautiful templates</li>
+         <li>Playing Indoor and Outdoor Games</li>
+         <li>Listening Music</li>
+         <li>Painting</li>
+    </ul>
+    </section>
+    <br><br>
+
+    <section>
+    <h2>Interests </h2>
+    <div class="input-group">
+        <input type="text" id="interestInput" placeholder="Add an interest">
+        <button onclick="addInterest()">Add</button>
+    </div>
+    <ul id="interestList">
+        <li>Frontend development</li>
+        <li>Problem solving</li>
+        <li>Explored events on Unstop</li>
+    </ul>
+    </section>
+
+    </div>
+
+
+    <div>
+        <section style="height: auto; width: 500px; margin-top: 70px;">
+    <h2>Daily Tasks</h2>
+    <div class="input-group">
+        <input type="text" id="taskInput" placeholder="Add a task">
+        <button onclick="addTask()">Add</button>
+    </div>
+    <ol id="taskList">
+        <li>Attend Java script classes</li>
+        <li>worked on OJT</li>
+        <li>Test Analysis</li>
+        <li>Complete assignments</li>
+        <li>mYsIVI</li>
+        <li>Revised Word power made Easy</li>
+        <li>Reading Books</li>
+    </ol>
+    </section>
+</div>
+
+</div>
+
+<script>
+
+    // Add delete button to existing list items
+    document.querySelectorAll("li").forEach(li => addDeleteButton(li));
+
+    function addDeleteButton(li) {
+        const btn = document.createElement("button");
+        btn.textContent = "Delete";
+        btn.className = "delete-btn";
+        btn.onclick = () => li.remove();
+        li.appendChild(btn);
+    }
+
+    function addHobby() {
+        const input = document.getElementById('hobbyInput');
+        const value = input.value.trim();
+        if (value === '') return;
+
+        const li = document.createElement('li');
+        li.textContent = value;
+
+        addDeleteButton(li);
+        document.getElementById('hobbyList').appendChild(li);
+        input.value = '';
+    }
+
+    function addInterest() {
+        const input = document.getElementById('interestInput');
+        const value = input.value.trim();
+        if (value === '') return;
+
+        const li = document.createElement('li');
+        li.textContent = value;
+
+        addDeleteButton(li);
+        document.getElementById('interestList').appendChild(li);
+        input.value = '';
+    }
+
+    function addTask() {
+        const input = document.getElementById('taskInput');
+        const value = input.value.trim();
+        if (value === '') return;
+
+        const li = document.createElement('li');
+        li.textContent = value;
+
+        addDeleteButton(li);
+        document.getElementById('taskList').appendChild(li);
+        input.value = '';
+    }
+
+</script>
+</body>
+</html>
